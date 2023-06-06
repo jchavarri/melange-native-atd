@@ -1,5 +1,35 @@
-;; we start by ignoring node_modules. if you need to consume an OCaml 
-;; project from `node_modules`, this should work:
-;; - remove the `dirs` stanza below
-;; - add a `(subdir node_modules (dirs only_your_package))`
-(dirs :standard \ node_modules)
+(subdir
+ node_modules
+ (vendored_dirs @ahrefs @glennsl)
+ (dirs @ahrefs @glennsl)
+ (subdir
+  @ahrefs
+  (vendored_dirs bs-atdgen-codec-runtime)
+  (dirs bs-atdgen-codec-runtime)
+  (subdir
+   bs-atdgen-codec-runtime
+   (vendored_dirs src)
+   (dirs src)
+   (subdir
+    src
+    (library
+     (name bs_atdgen_codec_runtime)
+     (wrapped false)
+     (libraries bs_json)
+     (modes melange)))))
+ (subdir
+  @glennsl
+  (vendored_dirs bs-json)
+  (dirs bs-json)
+  (subdir
+   bs-json
+   (vendored_dirs src)
+   (dirs src)
+   (subdir
+    src
+    (library
+     (name bs_json)
+     (wrapped false)
+     (modes melange)
+     (preprocess
+      (pps melange.ppx)))))))

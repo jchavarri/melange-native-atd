@@ -1,0 +1,18 @@
+(library
+ (name shared_js)
+ (modes melange)
+ (libraries bs_atdgen_codec_runtime))
+
+(rule
+ (targets person_bs.ml person_bs.mli)
+ (deps person.atd)
+ (action
+  (run atdgen -bs %{deps})))
+
+(rule
+ (targets person_t.ml person_t.mli)
+ (deps person.atd)
+ (action
+  (run atdgen -t %{deps})))
+
+(copy_files ../*.atd)
