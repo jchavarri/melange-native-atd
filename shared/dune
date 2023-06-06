@@ -1,0 +1,15 @@
+(library
+ (name shared_native)
+ (libraries atdgen-runtime))
+
+(rule
+ (targets person_j.ml person_j.mli)
+ (deps person.atd)
+ (action
+  (run atdgen -j -j-std %{deps})))
+
+(rule
+ (targets person_t.ml person_t.mli)
+ (deps person.atd)
+ (action
+  (run atdgen -t %{deps})))
