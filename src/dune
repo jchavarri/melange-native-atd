@@ -10,6 +10,6 @@
 (melange.emit
  (target node)
  (alias node)
- (libraries world)
+ (libraries shared_js world)
  (modules hello)
  (module_systems commonjs))
