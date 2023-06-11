@@ -15,4 +15,11 @@
  (action
   (run atdgen -t %{deps})))
 
-(copy_files ../*.atd)
+(copy_files ../*.{atd,cppo.ml})
+
+(rule
+ (targets platform.ml)
+ (deps
+  (:first-dep platform.cppo.ml))
+ (action
+  (run %{bin:cppo} -D MELANGE %{first-dep} -o %{targets})))

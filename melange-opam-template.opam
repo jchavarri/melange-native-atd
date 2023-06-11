@@ -12,6 +12,7 @@ depends: [
   "dune" {>= "3.8"}
   "melange" {>= "1.0.0"}
   "reactjs-jsx-ppx" {>= "1.0.0"}
+  "cppo" {>= "1.6.9"}
   "atdgen"
   "reason-react" {dev}
   "ocaml-lsp-server" {dev}

@@ -13,3 +13,10 @@
  (deps person.atd)
  (action
   (run atdgen -t %{deps})))
+
+(rule
+ (targets platform.ml)
+ (deps
+  (:first-dep platform.cppo.ml))
+ (action
+  (run %{bin:cppo} %{first-dep} -o %{targets})))
